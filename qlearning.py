@@ -50,7 +50,9 @@ class QLearningAgent:
         value = 0.0
         # BEGIN SOLUTION
         V_s = [self.get_qvalue(state, action) for action in self.legal_actions]
+        #print('V-s on get_value', V_s)
         value = np.max(V_s)
+        #print('get_value : ', value)
         # END SOLUTION
         return value
 
@@ -70,8 +72,10 @@ class QLearningAgent:
         TD_error = TD_target - self.get_qvalue(state, action)
         q_value = self.get_qvalue(state, action) + self.learning_rate * TD_error
         # END SOLUTION
-
+        #print('update: q_value = ', q_value)
         self.set_qvalue(state, action, q_value)
+        #print(f'get_q_value update: {self.get_qvalue(state, action)}')
+        #print(f'state value : {self.get_value(state)}')
 
     def get_best_action(self, state: State) -> Action:
         """
@@ -93,6 +97,7 @@ class QLearningAgent:
               and compare it with your probability
         """
         action = self.legal_actions[0]
+        #print(f'action1 : {action}')
 
         # BEGIN SOLUTION
         if random.uniform(0, 1) < self.epsilon:
@@ -101,4 +106,5 @@ class QLearningAgent:
             action = self.get_best_action(state)
         # END SOLUTION
 
+        #print(action)
         return action

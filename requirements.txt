@@ -1,0 +1,6 @@
+pandas
+numpy
+gymnasium
+gymnasium[toy-text]
+moviepy
+warnings
